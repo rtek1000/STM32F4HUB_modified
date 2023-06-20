@@ -1,4 +1,4 @@
-# STM32F4HUB
+# STM32F4HUB_modified
 
 - Support to all HID interfaces ([STM32CubeIDE](https://github.com/rtek1000/STM32F4HUB/blob/master/README.md#stm32cubeide-project)).
 - - To recognize the Mini Keyboard with built-in touchpad
