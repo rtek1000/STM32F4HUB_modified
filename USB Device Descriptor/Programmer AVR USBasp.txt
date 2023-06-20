@@ -1,0 +1,38 @@
+Device Descriptor:
+bcdUSB:             0x0110
+bDeviceClass:         0xFF
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x08 (8)
+idVendor:           0x16C0
+idProduct:          0x05DC
+bcdDevice:          0x0104
+iManufacturer:        0x01
+0x0409: "www.fischl.de"
+iProduct:             0x02
+0x0409: "USBasp"
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Low
+Device Address:       0x05
+Open Pipes:              0
+
+Configuration Descriptor:
+wTotalLength:       0x0012
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0x80 (Bus Powered )
+MaxPower:             0x19 (50 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x00
+bInterfaceClass:      0x00
+bInterfaceSubClass:   0x00
+bInterfaceProtocol:   0x00
+iInterface:           0x00

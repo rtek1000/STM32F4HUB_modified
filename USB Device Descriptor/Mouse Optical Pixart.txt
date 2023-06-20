@@ -1,0 +1,57 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x08 (8)
+idVendor:           0x093A (Pixart Imaging, Inc.)
+idProduct:          0x2510
+bcdDevice:          0x0100
+iManufacturer:        0x01
+0x0409: "PixArt"
+iProduct:             0x02
+0x0409: "USB Optical Mouse"
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Low
+Device Address:       0x02
+Open Pipes:              1
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0004 (4)
+bInterval:            0x0A
+
+Configuration Descriptor:
+wTotalLength:       0x0022
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0xA0 (Bus Powered Remote Wakeup)
+MaxPower:             0x32 (100 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x01
+bInterfaceClass:      0x03 (HID)
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x02
+iInterface:           0x00
+
+HID Descriptor:
+bcdHID:             0x0111
+bCountryCode:         0x00
+bNumDescriptors:      0x01
+bDescriptorType:      0x22
+wDescriptorLength:  0x002E
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0004 (4)
+bInterval:            0x0A

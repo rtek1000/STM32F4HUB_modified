@@ -1,0 +1,73 @@
+Device Descriptor:
+bcdUSB:             0x0110
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x0FE6
+idProduct:          0x9700
+bcdDevice:          0x0101
+iManufacturer:        0x00
+iProduct:             0x02
+0x0409: "USB 2.0 10/100M Ethernet Adaptor"
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Full
+Device Address:       0x03
+Open Pipes:              3
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x01
+
+Configuration Descriptor:
+wTotalLength:       0x0027
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0xA0 (Bus Powered Remote Wakeup)
+MaxPower:             0x3C (120 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x03
+bInterfaceClass:      0x00
+bInterfaceSubClass:   0x00
+bInterfaceProtocol:   0x00
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x01

@@ -1,0 +1,86 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x08 (8)
+idVendor:           0x046D (Logitech Inc.)
+idProduct:          0xC534
+bcdDevice:          0x2901
+iManufacturer:        0x01
+0x0409: "Logitech"
+iProduct:             0x02
+0x0409: "USB Receiver"
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Full
+Device Address:       0x03
+Open Pipes:              2
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x08
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0014 (20)
+bInterval:            0x02
+
+Configuration Descriptor:
+wTotalLength:       0x003B
+bNumInterfaces:       0x02
+bConfigurationValue:  0x01
+iConfiguration:       0x04
+0x0409: "RQR29.01_B0016"
+bmAttributes:         0xA0 (Bus Powered Remote Wakeup)
+MaxPower:             0x31 (98 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x01
+bInterfaceClass:      0x03 (HID)
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+HID Descriptor:
+bcdHID:             0x0111
+bCountryCode:         0x00
+bNumDescriptors:      0x01
+bDescriptorType:      0x22
+wDescriptorLength:  0x003B
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x08
+
+Interface Descriptor:
+bInterfaceNumber:     0x01
+bAlternateSetting:    0x00
+bNumEndpoints:        0x01
+bInterfaceClass:      0x03 (HID)
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x02
+iInterface:           0x00
+
+HID Descriptor:
+bcdHID:             0x0111
+bCountryCode:         0x00
+bNumDescriptors:      0x01
+bDescriptorType:      0x22
+wDescriptorLength:  0x00B1
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0014 (20)
+bInterval:            0x02

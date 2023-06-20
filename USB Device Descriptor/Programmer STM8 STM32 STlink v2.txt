@@ -1,0 +1,76 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x0483 (STMicroelectronics)
+idProduct:          0x3748
+bcdDevice:          0x0100
+iManufacturer:        0x01
+0x0409: "STMicroelectronics"
+iProduct:             0x02
+0x0409: "STM32 STLink"
+iSerialNumber:        0x03
+0x0409: "HÿhH?SI2`%?"
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Full
+Device Address:       0x04
+Open Pipes:              3
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Configuration Descriptor:
+wTotalLength:       0x0027
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0x80 (Bus Powered )
+MaxPower:             0x32 (100 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x03
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0xFF
+bInterfaceProtocol:   0xFF
+iInterface:           0x04
+0x0409: "ST Link"
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00

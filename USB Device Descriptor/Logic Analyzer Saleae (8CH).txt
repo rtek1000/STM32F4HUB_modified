@@ -1,0 +1,86 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0xFF
+bDeviceSubClass:      0xFF
+bDeviceProtocol:      0xFF
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x0925
+idProduct:          0x3881
+bcdDevice:          0x0000
+iManufacturer:        0x01
+0x0409: "Saleae LLC"
+iProduct:             0x02
+0x0409: "Logic"
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     High
+Device Address:       0x03
+Open Pipes:              4
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x06  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Configuration Descriptor:
+wTotalLength:       0x002E
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0x80 (Bus Powered )
+MaxPower:             0x32 (100 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x04
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0xFF
+bInterfaceProtocol:   0xFF
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x06  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00

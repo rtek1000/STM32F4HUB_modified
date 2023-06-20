@@ -1,0 +1,66 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x08 (8)
+idVendor:           0x0403 (Future Technology Devices International Limited)
+idProduct:          0x6001
+bcdDevice:          0x0600
+iManufacturer:        0x01
+0x0409: "FTDI"
+iProduct:             0x02
+0x0409: "FT232R USB UART"
+0x0409: "FT232R USB UART"
+iSerialNumber:        0x03
+0x0409: "A50285BI"
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Full
+Device Address:       0x04
+Open Pipes:              2
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Configuration Descriptor:
+wTotalLength:       0x0020
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0xA0 (Bus Powered Remote Wakeup)
+MaxPower:             0x2D (90 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x02
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0xFF
+bInterfaceProtocol:   0xFF
+iInterface:           0x02
+0x0409: "FT232R USB UART"
+0x0409: "FT232R USB UART"
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00

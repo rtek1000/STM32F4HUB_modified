@@ -1,0 +1,55 @@
+External Hub: USB#VID_8087&PID_0024#5&1d505670&0&1#{f18a0e88-c30c-11d0-8815-00a0c906bed8}
+Hub Power:               Self Power
+Number of Ports:         6
+Power switching:         Individual
+Compound device:         No
+Over-current Protection: Individual
+
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0x09
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x01
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x8087
+idProduct:          0x0024
+bcdDevice:          0x0000
+iManufacturer:        0x00
+iProduct:             0x00
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     High
+Device Address:       0x01
+Open Pipes:              1
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0001 (1)
+bInterval:            0x0C
+
+Configuration Descriptor:
+wTotalLength:       0x0019
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0xE0 (Bus Powered Self Powered Remote Wakeup)
+MaxPower:             0x00 (0 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x01
+bInterfaceClass:      0x09 (Hub)
+bInterfaceSubClass:   0x00
+bInterfaceProtocol:   0x00
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0001 (1)
+bInterval:            0x0C

@@ -1,0 +1,210 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0xE0
+bDeviceSubClass:      0x01
+bDeviceProtocol:      0x01
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x0A12 (Cambridge Silicon Radio Ltd.)
+idProduct:          0x0001
+bcdDevice:          0x5276
+iManufacturer:        0x00
+iProduct:             0x00
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Full
+Device Address:       0x04
+Open Pipes:              5
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0010 (16)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x03  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0000 (0)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0000 (0)
+bInterval:            0x01
+
+Configuration Descriptor:
+wTotalLength:       0x00B1
+bNumInterfaces:       0x02
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0xE0 (Bus Powered Self Powered Remote Wakeup)
+MaxPower:             0x00 (0 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x03
+bInterfaceClass:      0xE0
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0010 (16)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Interface Descriptor:
+bInterfaceNumber:     0x01
+bAlternateSetting:    0x00
+bNumEndpoints:        0x02
+bInterfaceClass:      0xE0
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x03  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0000 (0)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0000 (0)
+bInterval:            0x01
+
+Interface Descriptor:
+bInterfaceNumber:     0x01
+bAlternateSetting:    0x01
+bNumEndpoints:        0x02
+bInterfaceClass:      0xE0
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x03  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0009 (9)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0009 (9)
+bInterval:            0x01
+
+Interface Descriptor:
+bInterfaceNumber:     0x01
+bAlternateSetting:    0x02
+bNumEndpoints:        0x02
+bInterfaceClass:      0xE0
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x03  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0011 (17)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0011 (17)
+bInterval:            0x01
+
+Interface Descriptor:
+bInterfaceNumber:     0x01
+bAlternateSetting:    0x03
+bNumEndpoints:        0x02
+bInterfaceClass:      0xE0
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x03  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0019 (25)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0019 (25)
+bInterval:            0x01
+
+Interface Descriptor:
+bInterfaceNumber:     0x01
+bAlternateSetting:    0x04
+bNumEndpoints:        0x02
+bInterfaceClass:      0xE0
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x03  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0021 (33)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0021 (33)
+bInterval:            0x01
+
+Interface Descriptor:
+bInterfaceNumber:     0x01
+bAlternateSetting:    0x05
+bNumEndpoints:        0x02
+bInterfaceClass:      0xE0
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x01
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x03  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0031 (49)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x83  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0031 (49)
+bInterval:            0x01

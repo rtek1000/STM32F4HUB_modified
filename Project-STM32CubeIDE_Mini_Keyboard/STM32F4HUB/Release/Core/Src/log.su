@@ -1,0 +1,7 @@
+../Core/Src/log.c:50:6:LOG1.constprop	264	static
+../Core/Src/log.c:19:9:LOG_INIT	8	static
+../Core/Src/log.c:33:6:write_string	16	static
+../Core/Src/log.c:38:6:LOG	272	static
+../Core/Src/log.c:50:6:LOG1	272	static
+../Core/Src/log.c:61:6:LOG_ARRAY1	16	static
+../Core/Src/log.c:70:6:LOG_ARRAY	16	static

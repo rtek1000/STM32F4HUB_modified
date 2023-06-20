@@ -1,0 +1,66 @@
+Device Descriptor:
+bcdUSB:             0x0110
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x10C4
+idProduct:          0xEA60
+bcdDevice:          0x0100
+iManufacturer:        0x01
+0x0409: "Silicon Labs"
+iProduct:             0x02
+0x0409: "CP2102 USB to UART Bridge Controller"
+0x0409: "CP2102 USB to UART Bridge Controller"
+iSerialNumber:        0x03
+0x0409: "0001"
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Full
+Device Address:       0x02
+Open Pipes:              2
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Configuration Descriptor:
+wTotalLength:       0x0020
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0x80 (Bus Powered )
+MaxPower:             0x32 (100 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x02
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0x00
+bInterfaceProtocol:   0x00
+iInterface:           0x02
+0x0409: "CP2102 USB to UART Bridge Controller"
+0x0409: "CP2102 USB to UART Bridge Controller"
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x00

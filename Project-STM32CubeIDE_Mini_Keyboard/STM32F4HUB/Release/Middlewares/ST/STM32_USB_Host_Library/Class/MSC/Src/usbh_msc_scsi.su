@@ -1,0 +1,6 @@
+../Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c:103:20:USBH_MSC_SCSI_TestUnitReady	0	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c:145:20:USBH_MSC_SCSI_ReadCapacity	16	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c:201:20:USBH_MSC_SCSI_Inquiry	16	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c:272:20:USBH_MSC_SCSI_RequestSense	16	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c:331:20:USBH_MSC_SCSI_Write	8	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c:392:20:USBH_MSC_SCSI_Read	8	static

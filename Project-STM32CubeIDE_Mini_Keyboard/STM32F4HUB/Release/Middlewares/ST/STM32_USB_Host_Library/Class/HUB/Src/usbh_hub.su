@@ -1,0 +1,6 @@
+../Middlewares/ST/STM32_USB_Host_Library/Class/HUB/Src/usbh_hub.c:390:27:USBH_HUB_SOFProcess	0	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/HUB/Src/usbh_hub.c:166:27:USBH_HUB_ClassRequest	16	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/HUB/Src/usbh_hub.c:149:27:USBH_HUB_InterfaceDeInit	16	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/HUB/Src/usbh_hub.c:78:27:USBH_HUB_InterfaceInit	32	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/HUB/Src/usbh_hub.c:554:6:detach.constprop	32	static
+../Middlewares/ST/STM32_USB_Host_Library/Class/HUB/Src/usbh_hub.c:207:27:USBH_HUB_Process	40	static

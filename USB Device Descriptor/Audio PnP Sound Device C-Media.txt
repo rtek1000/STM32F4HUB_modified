@@ -1,0 +1,13 @@
+Device Descriptor:
+bcdUSB:             0x0110
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x08 (8)
+idVendor:           0x0D8C
+idProduct:          0x013C
+bcdDevice:          0x0100
+iManufacturer:        0x01
+0x0409: "C-Media Electronics Inc.      "
+iProduct:             0x02
+0x0409: "USB PnP Sound Device

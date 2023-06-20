@@ -1,0 +1,171 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0xFF
+bDeviceSubClass:      0xFF
+bDeviceProtocol:      0xFF
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x1D50
+idProduct:          0x608D
+bcdDevice:          0x2020
+iManufacturer:        0x00
+iProduct:             0x00
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     High
+Device Address:       0x05
+Open Pipes:              0
+
+Configuration Descriptor:
+wTotalLength:       0x00AB
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0x80 (Bus Powered )
+MaxPower:             0x32 (100 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x00
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0xFF
+bInterfaceProtocol:   0xFF
+iInterface:           0x00
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x01
+bNumEndpoints:        0x06
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0xFF
+bInterfaceProtocol:   0xFF
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x04  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x86  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x88  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x02
+bNumEndpoints:        0x06
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0xFF
+bInterfaceProtocol:   0xFF
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x04  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x86  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x88  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x03
+bNumEndpoints:        0x06
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0xFF
+bInterfaceProtocol:   0xFF
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0040 (64)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x04  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x86  IN
+Transfer Type: Isochronous
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x01
+
+Endpoint Descriptor:
+bEndpointAddress:     0x88  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00

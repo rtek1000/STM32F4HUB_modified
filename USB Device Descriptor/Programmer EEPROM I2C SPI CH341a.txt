@@ -1,0 +1,72 @@
+Device Descriptor:
+bcdUSB:             0x0110
+bDeviceClass:         0xFF
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x02
+bMaxPacketSize0:      0x08 (8)
+idVendor:           0x1A86
+idProduct:          0x5512
+bcdDevice:          0x0304
+iManufacturer:        0x00
+iProduct:             0x00
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Full
+Device Address:       0x04
+Open Pipes:              3
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0020 (32)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0020 (32)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x01
+
+Configuration Descriptor:
+wTotalLength:       0x0027
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0x80 (Bus Powered )
+MaxPower:             0x30 (96 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x03
+bInterfaceClass:      0xFF
+bInterfaceSubClass:   0x01
+bInterfaceProtocol:   0x02
+iInterface:           0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0020 (32)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x02  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0020 (32)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x01

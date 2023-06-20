@@ -1,0 +1,65 @@
+Device Descriptor:
+bcdUSB:             0x0200
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x40 (64)
+idVendor:           0x0BDA (Realtek Semiconductor Corp.)
+idProduct:          0x0158
+bcdDevice:          0x5888
+iManufacturer:        0x01
+0x0409: "Generic"
+iProduct:             0x02
+0x0409: "USB2.0-CRW"
+iSerialNumber:        0x03
+0x0409: "20071114173400000"
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     High
+Device Address:       0x02
+Open Pipes:              2
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Configuration Descriptor:
+wTotalLength:       0x0020
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x04
+0x0409: "CARD READER"
+bmAttributes:         0xA0 (Bus Powered Remote Wakeup)
+MaxPower:             0xFA (500 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x02
+bInterfaceClass:      0x08
+bInterfaceSubClass:   0x06
+bInterfaceProtocol:   0x50
+iInterface:           0x05
+0x0409: "Bulk-In, Bulk-Out, Interface"
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00
+
+Endpoint Descriptor:
+bEndpointAddress:     0x82  IN
+Transfer Type:        Bulk
+wMaxPacketSize:     0x0200 (512)
+bInterval:            0x00

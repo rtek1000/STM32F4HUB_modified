@@ -1,0 +1,69 @@
+Device Descriptor:
+bcdUSB:             0x0100
+bDeviceClass:         0x00
+bDeviceSubClass:      0x00
+bDeviceProtocol:      0x00
+bMaxPacketSize0:      0x08 (8)
+idVendor:           0x0079
+idProduct:          0x0006
+bcdDevice:          0x0107
+iManufacturer:        0x01
+0x0409: "DragonRise Inc.  "
+iProduct:             0x02
+0x0409: "Generic   USB  Joystick  "
+iSerialNumber:        0x00
+bNumConfigurations:   0x01
+
+ConnectionStatus: DeviceConnected
+Current Config Value: 0x01
+Device Bus Speed:     Low
+Device Address:       0x06
+Open Pipes:              2
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x0A
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x0A
+
+Configuration Descriptor:
+wTotalLength:       0x0029
+bNumInterfaces:       0x01
+bConfigurationValue:  0x01
+iConfiguration:       0x00
+bmAttributes:         0x80 (Bus Powered )
+MaxPower:             0xFA (500 Ma)
+
+Interface Descriptor:
+bInterfaceNumber:     0x00
+bAlternateSetting:    0x00
+bNumEndpoints:        0x02
+bInterfaceClass:      0x03 (HID)
+bInterfaceSubClass:   0x00
+bInterfaceProtocol:   0x00
+iInterface:           0x00
+
+HID Descriptor:
+bcdHID:             0x0110
+bCountryCode:         0x21
+bNumDescriptors:      0x01
+bDescriptorType:      0x22
+wDescriptorLength:  0x0065
+
+Endpoint Descriptor:
+bEndpointAddress:     0x81  IN
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x0A
+
+Endpoint Descriptor:
+bEndpointAddress:     0x01  OUT
+Transfer Type:   Interrupt
+wMaxPacketSize:     0x0008 (8)
+bInterval:            0x0A
