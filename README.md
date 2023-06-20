@@ -135,7 +135,7 @@ Btn 000 00000 000 000; X 0; Y 0
 - - - - Keyboard LED control supported
 - - - - Wireless Mouse Logitech M220 (and M185) (VID: 0x046D, PID: 0xC534) supported
 - - - - HUB class not implemented
-- - - - Folder: [Project-STM32CubeIDE_USBH_ASC](https://github.com/rtek1000/STM32F4HUB/tree/master/Project-STM32CubeIDE_USBH_ASC)
+- - - - Folder: [Project-STM32CubeIDE_USBH_ASC](https://github.com/rtek1000/STM32F4HUB_modified/tree/main/Project-STM32CubeIDE_USBH_ASC)
 - - By: RTEK1000
 
 -----
