@@ -92,10 +92,19 @@
 #define USBH_KEYBOARD_LED_NUM_LOCK_START      1U
 
  /*----------   -----------*/
-
 #define PRINT_BINARY_MOUSE_DATA 1 // Set 1 to print (usbh_hid_mouse.c)
 
+ /*----------   -----------*/
 #define PRINT_HEX_MOUSE_DATA 0 // Set 1 to print (usbh_hid_mouse.c)
+
+ /*----------   -----------*/
+#define PRINT_BINARY_CUSTOM_DATA 0 // Set 1 to print (usbh_hid_custom.c)
+
+ /*----------   -----------*/
+#define PRINT_HEX_CUSTOM_DATA 0 // Set 1 to print (usbh_hid_custom.c)
+
+ /*----------   -----------*/
+#define PRINT_HID_REPORT_DESCRIPTOR 1 // Set 1 to print (usbh_hid.c)
 
 /****************************************/
 /* #define for FS and HS identification */

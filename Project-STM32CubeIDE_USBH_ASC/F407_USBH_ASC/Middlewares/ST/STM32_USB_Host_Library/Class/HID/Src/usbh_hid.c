@@ -148,22 +148,39 @@ static USBH_StatusTypeDef USBH_HID_InterfaceInit(USBH_HandleTypeDef *phost) {
 		interface_check = USBH_CheckInterface(phost, interface_index,
 				phost->pActiveClass->ClassCode, HID_BOOT_CODE, 0xFFU);
 
+		if ((interface_check == 0xFFU)
+				|| (interface_check >= USBH_MAX_NUM_INTERFACES)) /* No Valid Interface */
+				{
+
+//			if (interface_index == 0) {
+			USBH_UsrLog("Interface %d, cannot find the HID_BOOT_CODE, skip",
+					interface_index);
+
+			USBH_UsrLog("Interface %d, try to find the HID_CUSTOM_BOOT_CODE",
+					interface_index);
+
+			interface_check = USBH_CheckInterface(phost, interface_index,
+					phost->pActiveClass->ClassCode, HID_CUSTOM_BOOT_CODE,
+					0xFFU);
+//			}
+		}
+
 		// USBH_UsrLog("interface_check: %d", interface_check);
 
 		if ((interface_check == 0xFFU)
 				|| (interface_check >= USBH_MAX_NUM_INTERFACES)) /* No Valid Interface */
 				{
-			phost->device.skip_interface = 1;
+			phost->device.skip_interface = 1U;
 			USBH_UsrLog("Interface %d, cannot find the HID_BOOT_CODE, skip",
 					interface_index);
-			USBH_UsrLog("(This interface can be for multimedia)\n");
+			USBH_UsrLog("(This interface can be for Multimedia functions)\n");
 			//return USBH_FAIL;
 
 			HID_Handle =
 					(HID_HandleTypeDef*) phost->pActiveClass->pData_array[interface_index];
 			//return USBH_OK;
 		} else {
-			phost->device.skip_interface = 0;
+			phost->device.skip_interface = 0U;
 			status = USBH_SelectInterface(phost, interface_index);
 
 			if (status != USBH_OK) {
@@ -188,7 +205,7 @@ static USBH_StatusTypeDef USBH_HID_InterfaceInit(USBH_HandleTypeDef *phost) {
 			}
 
 			/* Initialize hid handler */
-			(void) USBH_memset(HID_Handle, 0, sizeof(HID_HandleTypeDef));
+			(void) USBH_memset(HID_Handle, 0U, sizeof(HID_HandleTypeDef));
 
 			HID_Handle->state = HID_ERROR;
 
@@ -197,7 +214,8 @@ static USBH_StatusTypeDef USBH_HID_InterfaceInit(USBH_HandleTypeDef *phost) {
 					phost->device.CfgDesc.Itf_Desc[interface_index].bInterfaceProtocol;
 
 			if ((Iprot == HID_KEYBRD_BOOT_CODE)
-					|| (Iprot == HID_MOUSE_BOOT_CODE)) {
+					|| (Iprot == HID_MOUSE_BOOT_CODE)
+					|| (Iprot == HID_CUSTOM_BOOT_CODE)) {
 
 				if (Iprot == HID_KEYBRD_BOOT_CODE) {
 					USBH_UsrLog("KeyBoard device found!");
@@ -207,11 +225,18 @@ static USBH_StatusTypeDef USBH_HID_InterfaceInit(USBH_HandleTypeDef *phost) {
 
 					if (USBH_KEYBOARD_LED_NUM_LOCK_START == 1U) {
 						phost->device.kbd_LED_status = 0xFFU;
+						phost->device.kbd_LED_supported = 0U; // todo
 					}
 
-				} else { // if (Iprot == HID_MOUSE_BOOT_CODE) {
+				} else if (Iprot == HID_MOUSE_BOOT_CODE) {
 					USBH_UsrLog("Mouse device found!");
 					HID_Handle->Init = USBH_HID_MouseInit;
+					HID_Handle->state = HID_INIT;
+					HID_Handle->ctl_state = HID_REQ_INIT;
+
+				} else { // if (Iprot == HID_CUSTOM_BOOT_CODE) {
+					USBH_UsrLog("Custom device found!");
+					HID_Handle->Init = USBH_HID_CustomInit;
 					HID_Handle->state = HID_INIT;
 					HID_Handle->ctl_state = HID_REQ_INIT;
 				}
@@ -295,7 +320,7 @@ static USBH_StatusTypeDef USBH_HID_InterfaceInit(USBH_HandleTypeDef *phost) {
 				}
 			} else {
 				USBH_UsrLog("Protocol not supported.");
-				phost->device.skip_interface = 1;
+				phost->device.skip_interface = 1U;
 				//return USBH_FAIL;
 			}
 		}
@@ -377,6 +402,19 @@ static USBH_StatusTypeDef USBH_HID_ClassRequest(USBH_HandleTypeDef *phost) {
 				HID_Handle->HID_Desc.wItemLength);
 		if (classReqStatus == USBH_OK) {
 			/* The descriptor is available in phost->device.Data */
+
+#if PRINT_HID_REPORT_DESCRIPTOR == 1
+			USBH_UsrLog("Dump HID Report Descriptor start");
+			printf("wItemLength %d\n", HID_Handle->HID_Desc.wItemLength);
+
+			for(uint16_t i = 0; i < HID_Handle->HID_Desc.wItemLength; i++){
+				printf("0x%02X ", phost->device.Data[i]);
+			}
+
+			printf("\n");
+			USBH_UsrLog("Dump HID Report Descriptor end");
+#endif // #if PRINT_HID_REPORT_DESCRIPTOR == 1
+
 			HID_Handle->ctl_state = HID_REQ_SET_IDLE;
 		} else if (classReqStatus == USBH_NOT_SUPPORTED) {
 			USBH_ErrLog(
@@ -436,12 +474,12 @@ static void USBH_HID_IncrementInterface(USBH_HandleTypeDef *phost) {
 
 		if (phost->device.current_interface
 				>= phost->device.CfgDesc.bNumInterfaces) {
-			phost->device.current_interface = 0;
+			phost->device.current_interface = 0U;
 		}
 
-		if (phost->device.skip_interface == 0) {
-//			USBH_UsrLog("current_interface: %d",
-//					phost->device.current_interface);
+		if (phost->device.skip_interface == 0U) {
+			//USBH_UsrLog("current_interface: %d",
+			//		phost->device.current_interface);
 			break;
 		}
 	}
@@ -468,18 +506,22 @@ static uint8_t USB_Get_Keyboard_LED_Status(USBH_HandleTypeDef *phost) {
 			return HID_Handle->pData[0];
 		}
 
-		USBH_Delay(1);
+		USBH_Delay(5);
 	}
 
 	return 0xFF;
 }
 
 static USBH_StatusTypeDef USB_Set_Keyboard_LED_Status(USBH_HandleTypeDef *phost) {
-	if ((USBH_GetTick() - phost->device.kbd_led_status_tick) < 100) {
+	if(phost->device.kbd_LED_supported == 0) {
 		return HAL_OK;
 	}
 
-	phost->device.kbd_led_status_tick = USBH_GetTick();
+	if ((phost->Timer - phost->device.kbd_led_status_tick) < 50) {
+		return HAL_OK;
+	}
+
+	phost->device.kbd_led_status_tick = phost->Timer;
 
 	if (phost->device.kbd_LED_status == 0xFFU) {
 		phost->device.kbd_LED_status = 0b001U;
@@ -496,6 +538,12 @@ static USBH_StatusTypeDef USB_Set_Keyboard_LED_Status(USBH_HandleTypeDef *phost)
 
 	uint8_t LED_status = phost->device.kbd_LED_status & 7U;
 
+	uint8_t status_get = USB_Get_Keyboard_LED_Status(phost);
+
+	if ((status_get == 0xFF) || (status_get == LED_status)) {
+		return HAL_OK;
+	}
+
 	HID_Handle->pData[0] = LED_status;
 	HID_Handle->pData[1] = 0;
 
@@ -505,22 +553,22 @@ static USBH_StatusTypeDef USB_Set_Keyboard_LED_Status(USBH_HandleTypeDef *phost)
 		status_set = USBH_HID_SetReport(phost, 0x02U, 0U, HID_Handle->pData,
 				(uint8_t) HID_Handle->length_array[0]);
 
-		USBH_Delay(1);
-
 		if (status_set == USBH_OK) {
 			break;
 		}
+
+		USBH_Delay(5);
 	}
 
-	if (status_set == USBH_OK) {
-		uint8_t status_get = USB_Get_Keyboard_LED_Status(phost);
+//	if (status_set == USBH_OK) {
+//		uint8_t status_get = USB_Get_Keyboard_LED_Status(phost);
+//
+//		if (status_get == LED_status) {
+	return USBH_OK;
+//		}
+//	}
 
-		if (status_get == LED_status) {
-			return USBH_OK;
-		}
-	}
-
-	return USBH_NOT_SUPPORTED;
+//	return USBH_NOT_SUPPORTED;
 }
 
 /**
@@ -563,14 +611,18 @@ static USBH_StatusTypeDef USBH_HID_Process(USBH_HandleTypeDef *phost) {
 		status = USBH_HID_GetReport(phost, 0x01U, 0U, HID_Handle->pData,
 				(uint8_t) HID_Handle->length_array[0]);
 		if (status == USBH_OK) {
+//			USBH_UsrLog("status USBH_OK");
 			HID_Handle->state = HID_SYNC;
 		} else if (status == USBH_BUSY) {
+//			USBH_UsrLog("status USBH_BUSY");
 			HID_Handle->state = HID_IDLE;
 			status = USBH_OK;
 		} else if (status == USBH_NOT_SUPPORTED) {
+//			USBH_UsrLog("status USBH_NOT_SUPPORTED");
 			HID_Handle->state = HID_SYNC;
 			status = USBH_OK;
 		} else {
+//			USBH_UsrLog("status HID_ERROR");
 			HID_Handle->state = HID_ERROR;
 			status = USBH_FAIL;
 		}
@@ -617,6 +669,7 @@ static USBH_StatusTypeDef USBH_HID_Process(USBH_HandleTypeDef *phost) {
 		URBState = (uint8_t) USBH_LL_GetURBState(phost, HID_Handle->InPipe);
 
 		if (URBState == USBH_URB_DONE) {
+			HID_Handle->Timeout = USBH_GetTick(); //0;
 			//USBH_UsrLog("USBH_URB_DONE, interface: %d", idx);
 			XferSize = USBH_LL_GetLastXferSize(phost, HID_Handle->InPipe);
 
@@ -625,6 +678,10 @@ static USBH_StatusTypeDef USBH_HID_Process(USBH_HandleTypeDef *phost) {
 						HID_Handle->length_array[0]);
 				HID_Handle->DataReady = 1U;
 				USBH_HID_EventCallback(phost);
+
+				if (HID_Handle->Init == USBH_HID_KeybdInit) {
+					phost->device.kbd_led_status_tick = phost->Timer;
+				}
 
 #if (USBH_USE_OS == 1U)
           phost->os_msg = (uint32_t)USBH_URB_EVENT;
@@ -636,7 +693,7 @@ static USBH_StatusTypeDef USBH_HID_Process(USBH_HandleTypeDef *phost) {
 #endif
 			}
 		} else if (URBState == USBH_URB_STALL) {
-			// USBH_UsrLog("USBH_URB_STALL");
+			//USBH_UsrLog("USBH_URB_STALL");
 			/* Issue Clear Feature on interrupt IN endpoint */
 			if (USBH_ClrFeature(phost, HID_Handle->ep_addr_array[0])
 					== USBH_OK) {
@@ -653,32 +710,38 @@ static USBH_StatusTypeDef USBH_HID_Process(USBH_HandleTypeDef *phost) {
 		} else {
 			if (URBState == USBH_URB_ERROR) {
 
-				USBH_ErrLog("USBH_URB_ERROR");
+				//USBH_ErrLog("USBH_URB_ERROR");
 			} else if (URBState == USBH_URB_NOTREADY) {
-				USBH_UsrLog("USBH_URB_NOTREADY");
+				// USBH_UsrLog("USBH_URB_NOTREADY");
 			} else if (URBState == USBH_URB_NYET) {
-				USBH_UsrLog("USBH_URB_NYET");
+				// USBH_UsrLog("USBH_URB_NYET");
 			} else {
 				if (URBState != USBH_URB_IDLE) {
 					USBH_UsrLog("URBState: %d", URBState);
 				}
 			}
 
-			if (URBState != USBH_URB_IDLE) {
+			if (URBState == USBH_URB_IDLE) {
+				// USBH_UsrLog("Timer: 0x%08lu", phost->Timer);
+				if (HID_Handle->Init == USBH_HID_KeybdInit) {
+					USB_Set_Keyboard_LED_Status(phost);
+				} else if (HID_Handle->Init == USBH_HID_CustomInit) {
+					// vibration feedback
+				}
+			} else {
 				if ((USBH_GetTick() - HID_Handle->Timeout)
 						> USBH_DEV_RESET_TIMEOUT) {
 					//USBH_UsrLog("USB Configuration Failed, Please unplug the Device.");
 					HID_Handle->state = HID_ERROR;
 					HID_Handle->Timeout = USBH_GetTick(); //0;
 				}
-			} else {
-				(void)USB_Set_Keyboard_LED_Status(phost);
 			}
 		}
 		break;
 	case HID_ERROR:
-		USBH_UsrLog("HID_ERROR");
-		USBH_RecoveryPhost(phost);
+		HID_Handle->state = HID_SYNC;
+		USBH_UsrLog("case HID_ERROR");
+		// USBH_RecoveryPhost(phost);
 		break;
 	default:
 		break;

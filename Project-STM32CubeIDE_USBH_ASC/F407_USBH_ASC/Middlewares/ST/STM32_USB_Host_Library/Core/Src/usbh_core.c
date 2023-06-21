@@ -629,6 +629,9 @@ USBH_StatusTypeDef USBH_Process(USBH_HandleTypeDef *phost) {
 			if (phost->device.DevDesc.bNumConfigurations == 1U) {
 				USBH_UsrLog("This device has only 1 configuration.");
 				phost->gState = HOST_SET_CONFIGURATION;
+			} else {
+				USBH_UsrLog("This device has more than 1 configuration, abort");
+				phost->gState = HOST_ABORT_STATE; // only 1 configuration is supported
 			}
 #if (USBH_USE_OS == 1U)
         phost->os_msg = (uint32_t)USBH_STATE_CHANGED_EVENT;
@@ -895,6 +898,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 
 	switch (phost->EnumState) {
 	case ENUM_IDLE:
+		//USBH_UsrLog("HandleEnum: ENUM_IDLE");
 		/* Get Device Desc for only 1st 8 bytes : To get EP0 MaxPacketSize */
 		ReqStatus = USBH_Get_DevDesc(phost, 8U);
 		if (ReqStatus == USBH_OK) {
@@ -933,6 +937,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 		break;
 
 	case ENUM_GET_FULL_DEV_DESC:
+		//USBH_UsrLog("HandleEnum: ENUM_GET_FULL_DEV_DESC");
 		/* Get FULL Device Desc  */
 		ReqStatus = USBH_Get_DevDesc(phost, USB_DEVICE_DESC_SIZE);
 		if (ReqStatus == USBH_OK) {
@@ -964,6 +969,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 		break;
 
 	case ENUM_SET_ADDR:
+		//USBH_UsrLog("HandleEnum: ENUM_SET_ADDR");
 		/* set address */
 		ReqStatus = USBH_SetAddress(phost, USBH_DEVICE_ADDRESS);
 		if (ReqStatus == USBH_OK) {
@@ -997,6 +1003,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 		break;
 
 	case ENUM_GET_CFG_DESC:
+		//USBH_UsrLog("HandleEnum: ENUM_GET_CFG_DESC");
 		/* get standard configuration descriptor */
 		ReqStatus = USBH_Get_CfgDesc(phost, USB_CONFIGURATION_DESC_SIZE);
 		if (ReqStatus == USBH_OK) {
@@ -1026,6 +1033,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 		break;
 
 	case ENUM_GET_FULL_CFG_DESC:
+		//USBH_UsrLog("HandleEnum: ENUM_GET_FULL_CFG_DESC");
 		/* get FULL config descriptor (config, interface, endpoints) */
 		ReqStatus = USBH_Get_CfgDesc(phost, phost->device.CfgDesc.wTotalLength);
 		if (ReqStatus == USBH_OK) {
@@ -1054,6 +1062,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 		break;
 
 	case ENUM_GET_MFC_STRING_DESC:
+		//USBH_UsrLog("HandleEnum: ENUM_GET_MFC_STRING_DESC");
 		if (phost->device.DevDesc.iManufacturer != 0U) {
 			/* Check that Manufacturer String is available */
 			ReqStatus = USBH_Get_StringDesc(phost,
@@ -1104,6 +1113,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 		break;
 
 	case ENUM_GET_PRODUCT_STRING_DESC:
+		//USBH_UsrLog("HandleEnum: ENUM_GET_PRODUCT_STRING_DESC");
 		if (phost->device.DevDesc.iProduct != 0U) {
 			/* Check that Product string is available */
 			ReqStatus = USBH_Get_StringDesc(phost,
@@ -1143,6 +1153,7 @@ static USBH_StatusTypeDef USBH_HandleEnum(USBH_HandleTypeDef *phost) {
 		break;
 
 	case ENUM_GET_SERIALNUM_STRING_DESC:
+		//USBH_UsrLog("HandleEnum: ENUM_GET_SERIALNUM_STRING_DESC");
 		if (phost->device.DevDesc.iSerialNumber != 0U) {
 			/* Check that Serial number string is available */
 			ReqStatus = USBH_Get_StringDesc(phost,

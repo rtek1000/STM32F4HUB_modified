@@ -402,8 +402,8 @@ typedef struct {
 	uint8_t skip_interface;
 	USBH_DevDescTypeDef DevDesc;
 	USBH_CfgDescTypeDef CfgDesc;
-	uint8_t kbd_LED_status; // kbd_num_lock_state = 1
-//	uint8_t kbd_LED_status_old;
+	uint8_t kbd_LED_supported;
+	uint8_t kbd_LED_status;
 	uint32_t kbd_led_status_tick;
 	uint8_t kbd_LED_Num_Lock;
 	uint8_t kbd_LED_Caps_Lock;

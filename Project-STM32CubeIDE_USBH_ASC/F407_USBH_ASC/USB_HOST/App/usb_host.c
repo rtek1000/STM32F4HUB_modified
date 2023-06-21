@@ -37,19 +37,21 @@
 /* Private variables ---------------------------------------------------------*/
 HID_MOUSE_Info_TypeDef *mouse_info_local;
 
+HID_CUSTOM_Info_TypeDef *custom_info_local;
+
 // M.W.K.B.T.: Mini Wireless Keyboard with Built-in Touchpad
 typedef enum {
-	CODE_BTN_NEXT = 0x00B5,
-	CODE_BTN_PREV = 0x00B6,
-	CODE_BTN_PLAY_PAUSE = 0x00CD,
-	CODE_BTN_MUTE = 0x00E2,
-	CODE_BTN_VOL_UP = 0x00E9,
-	CODE_BTN_VOL_DOWN = 0x00EA,
-	CODE_BTN_MEDIA_PLAYER = 0x0183,
-	CODE_BTN_EMAIL = 0x018A,
-	CODE_BTN_BROWSER = 0x0196,
-	CODE_BTN_SEARCH = 0x0221,
-	CODE_BTN_HOME = 0x0223,
+	CODE_BTN_NEXT = 0xB5,
+	CODE_BTN_PREV = 0xB6,
+	CODE_BTN_PLAY_PAUSE = 0xCD,
+	CODE_BTN_MUTE = 0xE2,
+	CODE_BTN_VOL_UP = 0xE9,
+	CODE_BTN_VOL_DOWN = 0xEA,
+	CODE_BTN_MEDIA_PLAYER = 0x83,
+	CODE_BTN_EMAIL = 0x8A,
+	CODE_BTN_BROWSER = 0x96,
+	CODE_BTN_SEARCH = 0x21,
+	CODE_BTN_HOME = 0x23,
 } MWKBT1_TypeTypeDef;
 
 typedef enum {
@@ -68,6 +70,19 @@ typedef enum {
 	MWKBT_HOME,
 } MWKBT2_TypeTypeDef;
 
+uint8_t MWKBT_array_cod[11] = { CODE_BTN_NEXT, CODE_BTN_PREV,
+		CODE_BTN_PLAY_PAUSE, CODE_BTN_MUTE, CODE_BTN_VOL_UP, CODE_BTN_VOL_DOWN,
+		CODE_BTN_MEDIA_PLAYER, CODE_BTN_EMAIL, CODE_BTN_BROWSER,
+		CODE_BTN_SEARCH, CODE_BTN_HOME };
+
+uint8_t MWKBT_array_ref[11] = { MWKBT_NEXT, MWKBT_PREV, MWKBT_PLAY_PAUSE,
+		MWKBT_MUTE, MWKBT_VOL_UP, MWKBT_VOL_DOWN, MWKBT_MEDIA_PLAYER,
+		MWKBT_EMAIL, MWKBT_BROWSER, MWKBT_SEARCH, MWKBT_HOME };
+
+char *MWKBT_array_name[11] = { "Next", "Previous", "Play/Pause", "Mute",
+		"Volume Up", "Volume Down", "Media Player", "e-mail", "Browser",
+		"Search", "Home" };
+
 typedef struct _HID_Multimedia_Touchpad {
 	uint8_t x;
 	uint8_t y;
@@ -75,18 +90,64 @@ typedef struct _HID_Multimedia_Touchpad {
 	uint8_t valid;
 	uint8_t buttons[3];
 	uint8_t multimedia;
+	uint8_t multimedia_size;
 //	uint8_t valid;
-} HID_Multimedia_Touchpad_TypeDef;
+} HID_MWKBT_TypeDef;
 
-HID_Multimedia_Touchpad_TypeDef info_decoded;
+HID_MWKBT_TypeDef MWKBT_decoded;
 
 HID_KEYBD_Info_TypeDef *keybd_info1;
+
+// M.K.LITE-ON: Multimedia Keyboard Lite-On
+typedef enum {
+	MKLITEON_COD_NEXT = 0xB5,
+	MKLITEON_COD_PREV = 0xB6,
+	MKLITEON_COD_PLAY_PAUSE = 0xCD,
+	MKLITEON_COD_MUTE = 0xE2,
+	MKLITEON_COD_VOL_UP = 0xE9,
+	MKLITEON_COD_VOL_DOWN = 0xEA,
+	MKLITEON_COD_STOP = 0xB7
+} MKLITEON1_TypeTypeDef;
+
+typedef enum {
+	MKLITEON_EMPTY = 0,
+	MKLITEON_VALID,
+	MKLITEON_NEXT,
+	MKLITEON_PREV,
+	MKLITEON_PLAY_PAUSE,
+	MKLITEON_MUTE,
+	MKLITEON_VOL_UP,
+	MKLITEON_VOL_DOWN,
+	MKLITEON_STOP
+} MKLITEON2_TypeTypeDef;
+
+uint8_t MKLITEON_array_cod[7] = { MKLITEON_COD_NEXT, MKLITEON_COD_PREV,
+		MKLITEON_COD_PLAY_PAUSE, MKLITEON_COD_MUTE, MKLITEON_COD_VOL_UP,
+		MKLITEON_COD_VOL_DOWN, MKLITEON_COD_STOP };
+
+uint8_t MKLITEON_array_ref[7] = { MKLITEON_NEXT, MKLITEON_PREV,
+		MKLITEON_PLAY_PAUSE, MKLITEON_MUTE, MKLITEON_VOL_UP, MKLITEON_VOL_DOWN,
+		MKLITEON_STOP };
+
+char *MKLITEON_array_name[7] = { "NEXT", "PREV", "PAUSE", "MUTE", "VOL_UP",
+		"VOL_DOWN", "STOP" };
+
+typedef struct _HID_MKLITEON {
+	uint8_t multimedia;
+	uint8_t multimedia_size;
+	uint8_t valid;
+} HID_MKLITEON_TypeDef;
+
+HID_MKLITEON_TypeDef MKLITEON_decoded;
+
 /* USER CODE END PV */
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-HID_Multimedia_Touchpad_TypeDef* HID_Decode_Mini_Keyboard_Touchpad(
+static HID_MWKBT_TypeDef* USBH_HID_Decode_Mini_Keyboard_Touchpad(
 		HID_MOUSE_Info_TypeDef *Minfo);
+static void USBH_HID_MouseLogiDecode(HID_MOUSE_Info_TypeDef *Minfo);
+static void USBH_HID_MultmediaKbDecode(HID_CUSTOM_Info_TypeDef *Cinfo);
 /* USER CODE END PFP */
 
 /* USB Host core handle declaration */
@@ -110,14 +171,14 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id);
  */
 /* USER CODE BEGIN 1 */
 // Mini Wireless Keyboard with built-in Touchpad decode:
-static HID_Multimedia_Touchpad_TypeDef* USBH_HID_Decode_Mini_Keyboard_Touchpad(
+static HID_MWKBT_TypeDef* USBH_HID_Decode_Mini_Keyboard_Touchpad(
 		HID_MOUSE_Info_TypeDef *Minfo) {
-	info_decoded.multimedia = MWKBT_EMPTY;
-	info_decoded.valid = MWKBT_EMPTY;
+	MWKBT_decoded.multimedia = MWKBT_EMPTY;
+	MWKBT_decoded.valid = MWKBT_EMPTY;
 
-	info_decoded.buttons[0] = 0;
-	info_decoded.buttons[1] = 0;
-	info_decoded.buttons[2] = 0;
+	MWKBT_decoded.buttons[0] = 0;
+	MWKBT_decoded.buttons[1] = 0;
+	MWKBT_decoded.buttons[2] = 0;
 
 //	USBH_UsrLog("raw_data32[0]: 0x%08lx", Minfo->raw_data32[0]);
 //	USBH_UsrLog("raw_data32[1]: 0x%08lx", Minfo->raw_data32[1]);
@@ -134,88 +195,115 @@ static HID_Multimedia_Touchpad_TypeDef* USBH_HID_Decode_Mini_Keyboard_Touchpad(
 			uint8_t btn0 = (Minfo->raw_data32[0] >> 8) & 1;
 			uint8_t btn1 = (Minfo->raw_data32[0] >> 9) & 1;
 
-			info_decoded.buttons[0] = btn0;
-			info_decoded.buttons[1] = btn1;
+			MWKBT_decoded.buttons[0] = btn0;
+			MWKBT_decoded.buttons[1] = btn1;
 
-			if ((info_decoded.buttons[0] == 1)
-					&& (info_decoded.buttons[1] == 1)) {
-				info_decoded.buttons[0] = 0;
-				info_decoded.buttons[1] = 0;
-				info_decoded.buttons[2] = 1;
+			if ((MWKBT_decoded.buttons[0] == 1)
+					&& (MWKBT_decoded.buttons[1] == 1)) {
+				MWKBT_decoded.buttons[0] = 0;
+				MWKBT_decoded.buttons[1] = 0;
+				MWKBT_decoded.buttons[2] = 1;
 			}
 
 			uint8_t x_val = (Minfo->raw_data32[0] >> 16) & 0xFF;
 			uint8_t y_val = (Minfo->raw_data32[0] >> 24) & 0xFF;
 
 			if ((x_val > 0) || (y_val > 0)) {
-				info_decoded.x = x_val;
-				info_decoded.y = y_val;
+				MWKBT_decoded.x = x_val;
+				MWKBT_decoded.y = y_val;
 			}
 
 			if ((btn0 != 0) || (btn1 != 0) || (x_val > 0) || (y_val > 0)) {
-				info_decoded.valid = MWKBT_VALID;
+				MWKBT_decoded.valid = MWKBT_VALID;
 			}
 		} else if ((((Minfo->raw_data32[0] >> 1) & 1) == 1)
 				&& ((Minfo->raw_data32[0] & 1) == 0)) {
 
 			//			printf("Multimedia functions\n");
 
-			uint16_t val1 = (Minfo->raw_data32[0] >> 8) & 0xFFFF;
+			if (sizeof(MWKBT_array_cod) != sizeof(MWKBT_array_ref)) {
+				USBH_UsrLog("Error: the sizes of the arrays do not match");
 
-			//			printf("val1: 0x%04X\n", val1);
-
-			switch (val1) {
-			case CODE_BTN_NEXT:
-				info_decoded.multimedia = MWKBT_NEXT;
-				break;
-			case CODE_BTN_PREV:
-				info_decoded.multimedia = MWKBT_PREV;
-				break;
-			case CODE_BTN_PLAY_PAUSE:
-				info_decoded.multimedia = MWKBT_PLAY_PAUSE;
-				break;
-			case CODE_BTN_MUTE:
-				info_decoded.multimedia = MWKBT_MUTE;
-				break;
-			case CODE_BTN_VOL_UP:
-				info_decoded.multimedia = MWKBT_VOL_UP;
-				break;
-			case CODE_BTN_VOL_DOWN:
-				info_decoded.multimedia = MWKBT_VOL_DOWN;
-				break;
-			case CODE_BTN_MEDIA_PLAYER:
-				info_decoded.multimedia = MWKBT_MEDIA_PLAYER;
-				break;
-			case CODE_BTN_EMAIL:
-				info_decoded.multimedia = MWKBT_EMAIL;
-				break;
-			case CODE_BTN_BROWSER:
-				info_decoded.multimedia = MWKBT_BROWSER;
-				break;
-			case CODE_BTN_SEARCH:
-				info_decoded.multimedia = MWKBT_SEARCH;
-				break;
-			case CODE_BTN_HOME:
-				info_decoded.multimedia = MWKBT_HOME;
-				break;
-			default:
-				info_decoded.multimedia = MWKBT_EMPTY;
-				break;
+				return &MWKBT_decoded;
 			}
 
-			if (info_decoded.multimedia != MWKBT_EMPTY) {
-				info_decoded.valid = MWKBT_VALID;
+			MWKBT_decoded.multimedia_size = sizeof(MWKBT_array_cod);
+
+			uint8_t new_cod = (Minfo->raw_data32[0] >> 8) & 0xFF;
+
+			//USBH_UsrLog("new_cod: 0x%02X", new_cod);
+
+			USBH_UsrLog("multimedia_size: %d", MWKBT_decoded.multimedia_size);
+
+			if (new_cod != 0) {
+				for (uint8_t i = 0; i < MWKBT_decoded.multimedia_size; i++) {
+					if (new_cod == MWKBT_array_cod[i]) {
+						MWKBT_decoded.multimedia = MWKBT_array_ref[i];
+
+						MWKBT_decoded.valid = MKLITEON_VALID;
+
+						USBH_UsrLog("found");
+
+						break;
+					}
+				}
+			} else {
+				MWKBT_decoded.multimedia = MKLITEON_EMPTY;
+				MWKBT_decoded.valid = MKLITEON_EMPTY;
 			}
+
+//			switch (val1) {
+//			case CODE_BTN_NEXT:
+//				MWKBT_decoded.multimedia = MWKBT_NEXT;
+//				break;
+//			case CODE_BTN_PREV:
+//				MWKBT_decoded.multimedia = MWKBT_PREV;
+//				break;
+//			case CODE_BTN_PLAY_PAUSE:
+//				MWKBT_decoded.multimedia = MWKBT_PLAY_PAUSE;
+//				break;
+//			case CODE_BTN_MUTE:
+//				MWKBT_decoded.multimedia = MWKBT_MUTE;
+//				break;
+//			case CODE_BTN_VOL_UP:
+//				MWKBT_decoded.multimedia = MWKBT_VOL_UP;
+//				break;
+//			case CODE_BTN_VOL_DOWN:
+//				MWKBT_decoded.multimedia = MWKBT_VOL_DOWN;
+//				break;
+//			case CODE_BTN_MEDIA_PLAYER:
+//				MWKBT_decoded.multimedia = MWKBT_MEDIA_PLAYER;
+//				break;
+//			case CODE_BTN_EMAIL:
+//				MWKBT_decoded.multimedia = MWKBT_EMAIL;
+//				break;
+//			case CODE_BTN_BROWSER:
+//				MWKBT_decoded.multimedia = MWKBT_BROWSER;
+//				break;
+//			case CODE_BTN_SEARCH:
+//				MWKBT_decoded.multimedia = MWKBT_SEARCH;
+//				break;
+//			case CODE_BTN_HOME:
+//				MWKBT_decoded.multimedia = MWKBT_HOME;
+//				break;
+//			default:
+//				MWKBT_decoded.multimedia = MWKBT_EMPTY;
+//				break;
+//			}
+//
+//			if (MWKBT_decoded.multimedia != MWKBT_EMPTY) {
+//				MWKBT_decoded.valid = MWKBT_VALID;
+//			}
 		}
 
-		info_decoded.scroll = Minfo->raw_data32[1] & 0xFF; // 8 bits
+		MWKBT_decoded.scroll = Minfo->raw_data32[1] & 0xFF; // 8 bits
 
-		if ((info_decoded.scroll & 1) == 1) {
-			info_decoded.valid = MWKBT_VALID;
+		if ((MWKBT_decoded.scroll & 1) == 1) {
+			MWKBT_decoded.valid = MWKBT_VALID;
 		}
 	}
 
-	return &info_decoded;
+	return &MWKBT_decoded;
 }
 
 static void USBH_HID_MouseLogiDecode(HID_MOUSE_Info_TypeDef *Minfo) {
@@ -258,6 +346,40 @@ static void USBH_HID_MouseLogiDecode(HID_MOUSE_Info_TypeDef *Minfo) {
 	}
 }
 
+static void USBH_HID_MultmediaKbDecode(HID_CUSTOM_Info_TypeDef *Cinfo) {
+	uint8_t raw_data32 = custom_info_local->raw_data32[0] & 0xFFFF00FF;
+
+	if ((raw_data32 == 1) && (Cinfo->raw_length == 0x03)) { // length_array: 3
+		if (sizeof(MKLITEON_array_cod) != sizeof(MKLITEON_array_cod)) {
+			USBH_UsrLog("Error: the sizes of the arrays do not match");
+
+			return;
+		}
+
+		MKLITEON_decoded.multimedia_size = sizeof(MKLITEON_array_cod);
+
+		/*Decode report */
+		uint8_t new_cod = (custom_info_local->raw_data32[0] >> 8) & 0xFF;
+
+		// USBH_UsrLog("new_cod: 0x%02X", new_cod);
+
+		if (new_cod != 0) {
+			for (uint8_t i = 0; i < MKLITEON_decoded.multimedia_size; i++) {
+				if (new_cod == MKLITEON_array_cod[i]) {
+					MKLITEON_decoded.multimedia = MKLITEON_array_ref[i];
+
+					MKLITEON_decoded.valid = MKLITEON_VALID;
+
+					break;
+				}
+			}
+		} else {
+			MKLITEON_decoded.multimedia = MKLITEON_EMPTY;
+			MKLITEON_decoded.valid = MKLITEON_EMPTY;
+		}
+	}
+}
+
 void USBH_HID_EventCallback(USBH_HandleTypeDef *phost) {
 	uint8_t idx = phost->device.current_interface;
 
@@ -265,6 +387,8 @@ void USBH_HID_EventCallback(USBH_HandleTypeDef *phost) {
 			(HID_HandleTypeDef*) phost->pActiveClass->pData_array[idx];
 	if (HID_Handle->Init == USBH_HID_KeybdInit) {
 		keybd_info1 = USBH_HID_GetKeybdInfo(phost);
+
+		USBH_UsrLog("USBH_HID_KeybdInit");
 
 		if ((keybd_info1->key_ascii != 0U) && (keybd_info1->key_ascii != 0x0AU)
 				&& (keybd_info1->keys[0] != KEY_HOME)) {
@@ -382,7 +506,7 @@ void USBH_HID_EventCallback(USBH_HandleTypeDef *phost) {
 		uint16_t VID_info = phost->device.DevDesc.idVendor;
 		uint16_t PID_info = phost->device.DevDesc.idProduct;
 
-		USBH_UsrLog("VID: 0x%04x, PID: 0x%04x", VID_info, PID_info);
+		USBH_UsrLog("VID: 0x%04X, PID: 0x%04X", VID_info, PID_info);
 
 		// Mini Wireless Keyboard
 		const uint16_t VID_MWKBT = 0x0513;
@@ -393,54 +517,63 @@ void USBH_HID_EventCallback(USBH_HandleTypeDef *phost) {
 		const uint16_t PID_WLogiM220 = 0xC534;
 
 		if ((VID_info == VID_MWKBT) && (PID_info == PID_MWKBT)) {
-			USBH_UsrLog("Mini Wireless Keyboard");
 
-			HID_Multimedia_Touchpad_TypeDef *mini_kb_touchpad;
+			HID_MWKBT_TypeDef *mini_kb_touchpad;
 
 			mini_kb_touchpad = USBH_HID_Decode_Mini_Keyboard_Touchpad(
 					mouse_info_local);
 
 			if (mini_kb_touchpad->multimedia != MWKBT_EMPTY) {
-				switch (mini_kb_touchpad->multimedia) {
-				case MWKBT_NEXT:
-					USBH_UsrLog("Next");
-					break;
-				case MWKBT_PREV:
-					USBH_UsrLog("Previous");
-					break;
-				case MWKBT_PLAY_PAUSE:
-					USBH_UsrLog("Play/Pause");
-					break;
-				case MWKBT_MUTE:
-					USBH_UsrLog("Mute");
-					break;
-				case MWKBT_VOL_UP:
-					USBH_UsrLog("Volume Up");
-					break;
-				case MWKBT_VOL_DOWN:
-					USBH_UsrLog("Volume Down");
-					break;
-				case MWKBT_MEDIA_PLAYER:
-					USBH_UsrLog("Media Player");
-					break;
-				case MWKBT_EMAIL:
-					USBH_UsrLog("e-mail");
-					break;
-				case MWKBT_BROWSER:
-					USBH_UsrLog("Browser");
-					break;
-				case MWKBT_SEARCH:
-					USBH_UsrLog("Search");
-					break;
-				case MWKBT_HOME:
-					USBH_UsrLog("Home");
-					break;
-				default:
+				if (MWKBT_decoded.valid == MWKBT_VALID) {
+					USBH_UsrLog("Mini Wireless Keyboard Multimidea");
 
-					break;
+					for (uint8_t i = 0; i < MWKBT_decoded.multimedia_size; i++) {
+						if (MWKBT_decoded.multimedia == MWKBT_array_ref[i]) {
+							USBH_UsrLog("%s", MWKBT_array_name[i]);
+						}
+					}
 				}
+
+//				switch (mini_kb_touchpad->multimedia) {
+//				case MWKBT_NEXT:
+//					USBH_UsrLog("Next");
+//					break;
+//				case MWKBT_PREV:
+//					USBH_UsrLog("Previous");
+//					break;
+//				case MWKBT_PLAY_PAUSE:
+//					USBH_UsrLog("Play/Pause");
+//					break;
+//				case MWKBT_MUTE:
+//					USBH_UsrLog("Mute");
+//					break;
+//				case MWKBT_VOL_UP:
+//					USBH_UsrLog("Volume Up");
+//					break;
+//				case MWKBT_VOL_DOWN:
+//					USBH_UsrLog("Volume Down");
+//					break;
+//				case MWKBT_MEDIA_PLAYER:
+//					USBH_UsrLog("Media Player");
+//					break;
+//				case MWKBT_EMAIL:
+//					USBH_UsrLog("e-mail");
+//					break;
+//				case MWKBT_BROWSER:
+//					USBH_UsrLog("Browser");
+//					break;
+//				case MWKBT_SEARCH:
+//					USBH_UsrLog("Search");
+//					break;
+//				case MWKBT_HOME:
+//					USBH_UsrLog("Home");
+//					break;
+//				default:
+//
+//					break;
+//				}
 			} else {
-				if (info_decoded.valid == MWKBT_VALID) {
+				if (MWKBT_decoded.valid == MWKBT_VALID) {
 					USBH_UsrLog(
 							"Mini KB Touchpad action: x=  0x%02X, y=  0x%02X, scroll=  0x%02X, button1= 0x%x, button2= 0x%x, button3= 0x%x",
 							mini_kb_touchpad->x, mini_kb_touchpad->y,
@@ -463,7 +596,7 @@ void USBH_HID_EventCallback(USBH_HandleTypeDef *phost) {
 						mouse_info_local->buttons[1],
 						mouse_info_local->buttons[2]);
 			}
-		} else { // regular mouse
+		} else { // regular mouse (2 buttons + scroll wheel)
 			//printf("Mouse action (raw data): ");
 
 			//print_raw_info(mouse_info);
@@ -474,6 +607,31 @@ void USBH_HID_EventCallback(USBH_HandleTypeDef *phost) {
 						mouse_info_local->scroll, mouse_info_local->buttons[0],
 						mouse_info_local->buttons[1],
 						mouse_info_local->buttons[2]);
+			}
+		}
+	} else if (HID_Handle->Init == USBH_HID_CustomInit) {
+		custom_info_local = USBH_HID_GetCustomInfo(phost);
+
+		uint16_t VID_info = phost->device.DevDesc.idVendor;
+		uint16_t PID_info = phost->device.DevDesc.idProduct;
+
+		// USBH_UsrLog("VID: 0x%04X, PID: 0x%04X", VID_info, PID_info);
+
+		// Multimedia Keyboard Lite-On
+		const uint16_t VID_MKLiteOn = 0x04CA;
+		const uint16_t PID_MKLiteOn = 0x005A;
+
+		if ((VID_info == VID_MKLiteOn) && (PID_info == PID_MKLiteOn)) {
+			USBH_HID_MultmediaKbDecode(custom_info_local);
+
+			if (MKLITEON_decoded.valid == MKLITEON_VALID) {
+				USBH_UsrLog("Multimedia Keyboard Lite-On");
+
+				for (uint8_t i = 0; i < MKLITEON_decoded.multimedia_size; i++) {
+					if (MKLITEON_decoded.multimedia == MKLITEON_array_ref[i]) {
+						USBH_UsrLog("%s", MKLITEON_array_name[i]);
+					}
+				}
 			}
 		}
 	}
