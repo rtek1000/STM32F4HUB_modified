@@ -4,7 +4,7 @@
 - - To recognize the Mini Keyboard with built-in touchpad
 - - - This project can serve as a basis for other devices with multiple interfaces
 - - - - To do: Update HID project from ASC project (it stopped recognizing the multimedia keyboard)
-- - - - To do: Check if keyboard accepts LED control, Mini Keyboard crashes when sending control data.
+- - - - To do: Check if keyboard accepts LED control, Mini Keyboard crashes when sending control data (USB HID Report Descriptor).
 
 Note: Original STM32F4HUB description at the [bottom of this page](https://github.com/rtek1000/STM32F4HUB_modified/tree/main#stm32f4hub---original-info)
 
