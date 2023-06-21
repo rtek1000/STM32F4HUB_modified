@@ -24,8 +24,7 @@ Note: Original description at the [bottom of this page](https://github.com/rtek1
 - - - - HUB class not implemented
 - - - - Folder: [Project-STM32CubeIDE_USBH_ASC](https://github.com/rtek1000/STM32F4HUB_modified/tree/main/Project-STM32CubeIDE_USBH_ASC)
 - - By: RTEK1000
-
-
+-
 - Date: Jun, 15, 2023
 - - Modification:
 - - - Adaptation to recognize more HID interfaces
@@ -35,23 +34,20 @@ Note: Original description at the [bottom of this page](https://github.com/rtek1
 - - - - Folder: [Project-STM32CubeIDE_USBH_HID](https://github.com/rtek1000/STM32F4HUB/tree/master/Project-STM32CubeIDE_USBH_HID)
 - - - Ref.: [BTstack Port for STM32 USB](https://bluekitchen-gmbh.com/btstack-stm32-usb-port/)
 - - By: RTEK1000
- 
-
+ -
 - Date: Jun, 13, 2023
 - - Debug info for Mini Keyboard Wireless with built-in touchpad
 - - - Debug messages obtained on serial port UART1 (PA9: TX, PA10: RX)
 - - - Board: [STM32F407VGT6-diymore](https://stm32-base.org/boards/STM32F407VGT6-diymore.html)
 - - By: RTEK1000
-
-
+-
 - Date: Dez, 31, 2022
 - - Modification:
 - - - Added support for two USB ports
 - - - Added MSC class support
 - - - Modified HUB Class
 - - By: RTEK1000
-
-
+-
 - Date: Dez, 27, 2022
 - - Modification:
 - - - Added Alternative support for Mini Keyboard (built-in touchpad)
@@ -59,8 +55,7 @@ Note: Original description at the [bottom of this page](https://github.com/rtek1
 - - - - (See https://www.amazon.com/Wireless-Keyboard-BIFANS-Portable-Touchpad/dp/B075SBX1CX)
 - - - - Click to open image: [Mini Keyboard Wireless with built-in touchpad](https://raw.githubusercontent.com/rtek1000/STM32F4HUB/master/Project-STM32CubeIDE_Mini_Keyboard/Mini_Keyboard1.jpg)
 - - By: RTEK1000
-
-
+-
 - Date: Dez, 26, 2022
 - - Modification:
 - - - Converted from 'System Workbench for STM32' to 'STM32CubeIDE v1.11.0'
