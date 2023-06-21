@@ -85,6 +85,7 @@ wMaxPacketSize:     0x0003 (3)
 bInterval:            0x0A
 
 ------
+(https://eleccelerator.com/usbdescreqparser/)
 
 USB HID Report Descriptor:
 
