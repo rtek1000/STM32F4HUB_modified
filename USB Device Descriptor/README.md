@@ -1,1 +1,1 @@
-
+Device descriptors for reference
