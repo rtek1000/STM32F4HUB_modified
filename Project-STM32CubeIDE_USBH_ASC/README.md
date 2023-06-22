@@ -1,7 +1,10 @@
 Note:
 - Do not use the Device Configuration Tool Code Generator
 - - Parts of the core code have been changed outside of the automatic generation delimiters
- 
+
+- ToDo: Check if keyboard accepts LED control, Mini Keyboard crashes when sending control data (USB HID Report Descriptor).
+- - Temporarily (until a better solution is implemented using the Report Descriptor), if a Mouse interface is recognized, the keyboard LED update function is disabled for this device (usbh_hid.c file)
+    
 ------
 
 - Date: Jun, 20, 2023
