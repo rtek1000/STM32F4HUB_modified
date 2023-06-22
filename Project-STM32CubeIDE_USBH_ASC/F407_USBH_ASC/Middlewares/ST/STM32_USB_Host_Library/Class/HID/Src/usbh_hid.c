@@ -225,7 +225,7 @@ static USBH_StatusTypeDef USBH_HID_InterfaceInit(USBH_HandleTypeDef *phost) {
 
 					if (USBH_KEYBOARD_LED_NUM_LOCK_START == 1U) {
 						phost->device.kbd_LED_status = 0xFFU;
-						phost->device.kbd_LED_supported = 0U; // todo
+						phost->device.kbd_LED_supported = 1U; // todo
 					}
 
 				} else if (Iprot == HID_MOUSE_BOOT_CODE) {
@@ -233,6 +233,7 @@ static USBH_StatusTypeDef USBH_HID_InterfaceInit(USBH_HandleTypeDef *phost) {
 					HID_Handle->Init = USBH_HID_MouseInit;
 					HID_Handle->state = HID_INIT;
 					HID_Handle->ctl_state = HID_REQ_INIT;
+					phost->device.kbd_LED_supported = 0U; // todo
 
 				} else { // if (Iprot == HID_CUSTOM_BOOT_CODE) {
 					USBH_UsrLog("Custom device found!");
