@@ -27,7 +27,6 @@
 #include "usbh_msc.h"
 #include "usbh_hid.h"
 #include "usbh_mtp.h"
-#include "usbh_hub.h"
 
 /* USER CODE BEGIN Includes */
 #include "usbh_hid_parser.h"
